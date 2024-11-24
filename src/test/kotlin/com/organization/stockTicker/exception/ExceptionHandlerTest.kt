@@ -26,8 +26,8 @@ class ExceptionHandlerTest {
 
     @Test
     fun shouldHandleOtherException() {
-        val response: List<Error> = exceptionHandler.handleValidationError(httpMessageException)
-        assertEquals("Invalid field format", response[0].message)
+        val response: Error = exceptionHandler.handleValidationError(httpMessageException)
+        assertEquals("Invalid field format", response.message)
     }
 
     @Test

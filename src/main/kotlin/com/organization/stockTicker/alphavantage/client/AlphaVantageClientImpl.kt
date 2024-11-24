@@ -27,8 +27,8 @@ class AlphaVantageClientImpl(private val restTemplate: RestTemplate,
             val response = restTemplate.getForObject(getUri(), String::class.java)
             return objectMapper.readValue(response, StockData::class.java)
         } catch (e: Exception) {
-            logger.error("Exception: ${e.message}")
-            throw ServiceUnavailableException("Alphavantage service error $e.message")
+            logger.error("Exception in Alpha vantage: ${e.message}")
+            throw ServiceUnavailableException("Alphavantage service error")
         }
     }
 

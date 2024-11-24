@@ -18,15 +18,12 @@ class ExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException::class, HttpMessageNotReadableException::class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
-    fun handleValidationError(ex: Exception): List<Error> {
+    fun handleValidationError(ex: Exception): Error {
         logger.error("Error:{}", ex.message)
-        val errors: MutableList<Error> = ArrayList()
         if (ex is MethodArgumentNotValidException) {
-            ex.bindingResult.fieldErrors.forEach{error -> errors.add(Error(error.field))}
-            return errors;
+            return  Error(ex.bindingResult.fieldErrors[0].field)
         }
-        errors.add(Error("Invalid field format"))
-        return errors
+        return Error("Invalid field format")
     }
 
     @ExceptionHandler(ServiceUnavailableException::class)
