@@ -1,0 +1,18 @@
+{
+  "apiPackage" : "com.organization.stockTicker.api",
+  "modelPackage": "com.organization.stockTicker.models",
+  "packageName": "com.organization.stockTicker",
+  "configPackage": "com.organization.stockTicker",
+  "groupId": "com.organization.stockTicker",
+  "additionalModelTypeAnnotations": "@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)",
+  "serializationLibrary": "jackson",
+  "library": "spring-boot",
+  "dateLibrary": "java8",
+  "useSpringBoot3": true,
+  "useTags": true,
+  "oas3": true,
+  "delegatePattern": true,
+  "hideGenerationTimestamp": true,
+  "generateApiTests": true,
+  "generateModelTests": false
+}
