@@ -1,5 +1,6 @@
 package com.organization.stockTicker.exception
 
+import com.organization.stockTicker.models.ErrorReport
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -26,14 +27,14 @@ class ExceptionHandlerTest {
 
     @Test
     fun shouldHandleOtherException() {
-        val response: List<Error> = exceptionHandler.handleValidationError(httpMessageException)
+        val response: List<ErrorReport> = exceptionHandler.handleValidationError(httpMessageException)
         assertEquals("Invalid field format", response[0].message)
     }
 
     @Test
     fun shouldHandleServiceUnavailableException() {
         `when`(serviceUnavailableException.message).thenReturn(serviceErrorMessage)
-        val response: Error = exceptionHandler.handleValidationError(serviceUnavailableException)
+        val response: ErrorReport = exceptionHandler.handleValidationError(serviceUnavailableException)
         assertEquals(serviceErrorMessage, response.message)
     }
 
