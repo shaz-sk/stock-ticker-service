@@ -26,7 +26,9 @@ class AlphaVantageClientImpl(private val restTemplate: RestTemplate,
     @CircuitBreaker(name = "circuit-breaker", fallbackMethod = "fallbackResponse")
     override fun getTimeSeriesData(): StockData? {
         try {
+            logger.info("Retrieving data from Alphavantage with symbol $symbol and function $function")
             val response = restTemplate.getForObject(getUri(), String::class.java)
+            logger.info("Mapping response received from Alphavantage ")
             return objectMapper.readValue(response, StockData::class.java)
         } catch (e: Exception) {
             logger.error("Alphavantage service exception: ${e.message}")

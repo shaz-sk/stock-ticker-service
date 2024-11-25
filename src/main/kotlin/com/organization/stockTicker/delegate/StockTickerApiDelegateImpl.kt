@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service
 class StockTickerApiDelegateImpl(private val stockTickerService : StockTickerService) : StockTickerApiDelegate {
 
     override fun getClosingQuote(): ResponseEntity<StockDetails> =
-        ResponseEntity.ok(stockTickerService.getQuote())
+        ResponseEntity.ok(stockTickerService.getClosingQuote())
 
 }

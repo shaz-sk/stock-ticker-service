@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 class StockTickerServiceImpl(private val alphaVantageClient: AlphaVantageClient,
                              private val stockDetailsMapper: StockDetailsMapper) : StockTickerService {
 
-    override fun getQuote(): StockDetails {
+    override fun getClosingQuote(): StockDetails {
         val timeSeriesData = alphaVantageClient.getTimeSeriesData()
         return stockDetailsMapper.mapToStockDetails(timeSeriesData!!)
     }
