@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.util.UriComponentsBuilder
 
+/*
+This client is used to make third party API call (Alphavantage)
+ */
 @Service
 class AlphaVantageClientImpl(private val restTemplate: RestTemplate,
                              private val objectMapper: ObjectMapper,

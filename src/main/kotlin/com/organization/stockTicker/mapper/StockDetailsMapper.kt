@@ -6,6 +6,9 @@ import com.organization.stockTicker.models.StockDetails
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
+/*
+Mapper to map the third party response to our API response
+ */
 @Service
 class StockDetailsMapper(@Value("\${alphavantage.ndays}") private var ndays: Int) {
     private val maxDays = 30
