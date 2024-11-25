@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.web.client.RestTemplate
 
 @Configuration
-class Configuration {
+class ApplicationConfiguration {
 
     @Bean
     fun restTemplate(): RestTemplate = RestTemplate()

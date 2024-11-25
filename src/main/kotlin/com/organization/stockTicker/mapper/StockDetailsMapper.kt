@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class StockDetailsMapper(@Value("\${alphavantage.ndays}") private var ndays: Int) {
+    private val maxDays = 30
     fun mapToStockDetails(stockData: StockData): StockDetails {
         val dailyClosingPrice = getDailyClosingPrice(stockData.timeSeries)
         return StockDetails(
@@ -18,8 +19,10 @@ class StockDetailsMapper(@Value("\${alphavantage.ndays}") private var ndays: Int
             )
     }
 
-    private fun getDailyClosingPrice(dailyDataMap: Map<String, DailyData>): Map<String, Double> =
-        dailyDataMap.entries.take(ndays).associate { it.key to it.value.close }
+    private fun getDailyClosingPrice(dailyDataMap: Map<String, DailyData>): Map<String, Double> {
+        ndays = if (ndays < maxDays) ndays else maxDays
+        return dailyDataMap.entries.take(ndays).associate { it.key to it.value.close }
+    }
 
     private fun averagePrice(dailyPrice: Collection<Double>): Double = dailyPrice.sum()/ndays
 

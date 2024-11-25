@@ -1,0 +1,3 @@
+alphavantage:
+  apikey: "testkey"
+  symbol: "MSFT"

@@ -3,6 +3,7 @@ package com.organization.stockTicker.alphavantage.client
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.organization.stockTicker.alphavantage.models.StockData
 import com.organization.stockTicker.exception.ServiceUnavailableException
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
@@ -22,14 +23,20 @@ class AlphaVantageClientImpl(private val restTemplate: RestTemplate,
 
     private val function = "TIME_SERIES_DAILY"
 
+    @CircuitBreaker(name = "circuit-breaker", fallbackMethod = "fallbackResponse")
     override fun getTimeSeriesData(): StockData? {
         try {
             val response = restTemplate.getForObject(getUri(), String::class.java)
             return objectMapper.readValue(response, StockData::class.java)
         } catch (e: Exception) {
-            logger.error("Exception: ${e.message}")
+            logger.error("Alphavantage service exception: ${e.message}")
             throw ServiceUnavailableException("Alphavantage service error $e.message")
         }
+    }
+
+    fun fallbackResponse(e: Exception): StockData? {
+        logger.error("Alphavantage service exception: ${e.message}")
+        throw ServiceUnavailableException("Alphavantage service error $e.message")
     }
 
     private fun getUri() = UriComponentsBuilder.fromHttpUrl(url)

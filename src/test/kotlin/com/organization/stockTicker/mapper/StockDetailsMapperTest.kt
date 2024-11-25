@@ -21,6 +21,5 @@ class StockDetailsMapperTest {
         val stockDetails = stockDetailsMapper.mapToStockDetails(timeSeriesMappedData)
         assertEquals(timeSeriesMappedData.metaData.symbol, stockDetails.symbol)
         assertEquals(days, stockDetails.averagePeriod)
-        //TODO
     }
 }

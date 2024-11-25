@@ -2,6 +2,19 @@ spring:
   application:
     name: stock-ticker-service
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      circuit-breaker:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 30s
+        permittedNumberOfCallsInHalfOpenState: 3
+        eventConsumerBufferSize: 10
+
 alphavantage:
   apikey: ${APIKEY}
   symbol: ${SYMBOL}
