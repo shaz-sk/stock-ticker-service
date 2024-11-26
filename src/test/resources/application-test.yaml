@@ -1,3 +1,4 @@
 alphavantage:
   apikey: "testkey"
   symbol: "MSFT"
+  url: "http://localhost:8000"

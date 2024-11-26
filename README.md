@@ -22,12 +22,13 @@
 
 ### What is in the code
 - Springboot microservice with delegation and service layer pattern.
-- Boilerplate code generation using openapi code generator. API endpoints are generated during build. The pushed code starts from `StockTickerApiDelegateImpl`.
-- Open API spec is available src/main/resources/openapi.yaml.
+- Boilerplate code generation. API endpoints are generated during build using openapi code generator. The pushed code starts from `StockTickerApiDelegateImpl`.
 - Actuator for health check endpoints.
-- Circuit breaker to handle third party API errors.
+- Circuit breaker to handle third party API errors by providing failure protection.
 - Exception Handler to standardise the exception handling.
 - Build and publish script.
+- Integration test using MockMvc and Wiremock
+- Open API spec is available src/main/resources/openapi.yaml.
 
 ### Code details 
 - StockTickerApiDelegateImpl --> StockTickerServiceImpl --> AlphaVantageClientImpl --> StockTickerServiceImpl --> StockDetailsMapper --> StockTickerApiDelegateImpl
