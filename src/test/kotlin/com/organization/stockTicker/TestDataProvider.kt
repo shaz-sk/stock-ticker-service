@@ -62,7 +62,7 @@ class TestDataProvider {
                 }
                     """.trimIndent()
 
-        val timeSeriesMappedData = ObjectMapper().readValue(timeSeriesRawData, StockData::class.java)
+        val timeSeriesMappedData: StockData = ObjectMapper().readValue(timeSeriesRawData, StockData::class.java)
     }
 
 }

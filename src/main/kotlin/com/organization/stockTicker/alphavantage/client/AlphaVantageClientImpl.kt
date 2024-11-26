@@ -32,7 +32,9 @@ class AlphaVantageClientImpl(private val restTemplate: RestTemplate,
             logger.info("Retrieving data from Alphavantage with symbol $symbol and function $function")
             val response = restTemplate.getForObject(getUri(), String::class.java)
             logger.info("Mapping response received from Alphavantage ")
+
             return objectMapper.readValue(response, StockData::class.java)
+
         } catch (e: Exception) {
             logger.error("Alphavantage service exception: ${e.message}")
             throw ServiceUnavailableException("Alphavantage service error $e.message")
@@ -40,7 +42,7 @@ class AlphaVantageClientImpl(private val restTemplate: RestTemplate,
     }
 
     fun fallbackResponse(e: Exception): StockData? {
-        logger.error("Alphavantage service exception: ${e.message}")
+        logger.error("Fallback on exception: ${e.message}")
         throw ServiceUnavailableException("Alphavantage service error $e.message")
     }
 

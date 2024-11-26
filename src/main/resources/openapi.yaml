@@ -31,6 +31,9 @@ components:
     StockDetails:
       type: object
       properties:
+        information:
+          type: string
+          example: 'Information from alphavantage'
         symbol:
           type: string
           example: 'MSFT'
@@ -43,11 +46,6 @@ components:
         dailyClosingPrice:
           additionalProperties:
             type: double
-      required:
-        - symbol
-        - averageClosingPrice
-        - averagePeriod
-        - dailyClosingPrice
 
     ErrorReport:
       type: object

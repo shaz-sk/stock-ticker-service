@@ -3,8 +3,9 @@ package com.organization.stockTicker.alphavantage.models
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class StockData(
-    @JsonProperty("Meta Data") val metaData: MetaData,
-    @JsonProperty("Time Series (Daily)") val timeSeries: Map<String, DailyData>
+    @JsonProperty("Information") var information: String?,
+    @JsonProperty("Meta Data") var metaData: MetaData?,
+    @JsonProperty("Time Series (Daily)") var timeSeries: Map<String, DailyData>?
 )
 
 data class MetaData(

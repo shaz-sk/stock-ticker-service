@@ -14,7 +14,7 @@ class StockTickerServiceImpl(private val alphaVantageClient: AlphaVantageClient,
 
     override fun getClosingQuote(): StockDetails {
         val timeSeriesData = alphaVantageClient.getTimeSeriesData()
-        return stockDetailsMapper.mapToStockDetails(timeSeriesData!!)
+        return stockDetailsMapper.mapTimeSeriesToStockDetails(timeSeriesData!!)
     }
 
 }

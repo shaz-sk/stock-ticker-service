@@ -18,8 +18,8 @@ class StockDetailsMapperTest {
     }
     @Test
     fun `should map from StockData to StockDetails`() {
-        val stockDetails = stockDetailsMapper.mapToStockDetails(timeSeriesMappedData)
-        assertEquals(timeSeriesMappedData.metaData.symbol, stockDetails.symbol)
+        val stockDetails = stockDetailsMapper.mapTimeSeriesToStockDetails(timeSeriesMappedData)
+        assertEquals(timeSeriesMappedData.metaData?.symbol, stockDetails.symbol)
         assertEquals(days, stockDetails.averagePeriod)
     }
 }

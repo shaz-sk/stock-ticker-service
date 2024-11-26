@@ -12,14 +12,18 @@ Mapper to map the third party response to our API response
 @Service
 class StockDetailsMapper(@Value("\${alphavantage.ndays}") private var ndays: Int) {
     private val maxDays = 30
-    fun mapToStockDetails(stockData: StockData): StockDetails {
-        val dailyClosingPrice = getDailyClosingPrice(stockData.timeSeries)
-        return StockDetails(
-            symbol = stockData.metaData.symbol,
-            dailyClosingPrice = dailyClosingPrice,
-            averageClosingPrice = averagePrice(dailyClosingPrice.values),
-            averagePeriod = ndays
+    fun mapTimeSeriesToStockDetails(stockData: StockData): StockDetails {
+        stockData.timeSeries?.let {
+            val dailyClosingPrice = getDailyClosingPrice(it)
+            return StockDetails(
+                symbol = stockData.metaData?.symbol,
+                dailyClosingPrice = dailyClosingPrice,
+                averageClosingPrice = averagePrice(dailyClosingPrice.values),
+                averagePeriod = ndays
             )
+        }
+        return StockDetails(information = stockData.information)
+
     }
 
     private fun getDailyClosingPrice(dailyDataMap: Map<String, DailyData>): Map<String, Double> {
