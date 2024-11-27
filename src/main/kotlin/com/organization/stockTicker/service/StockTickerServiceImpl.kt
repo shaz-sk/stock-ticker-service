@@ -6,7 +6,7 @@ import com.organization.stockTicker.models.StockDetails
 import org.springframework.stereotype.Service
 
 /*
-Service class that has the business logic
+Service class that handles the business logic for retrieving and processing stock ticker data
  */
 @Service
 class StockTickerServiceImpl(private val alphaVantageClient: AlphaVantageClient,

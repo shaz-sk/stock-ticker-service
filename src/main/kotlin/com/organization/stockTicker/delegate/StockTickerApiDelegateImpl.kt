@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 /*
-Delegate class that receives the API request from Controller
+Delegate class that receives the API request from Controller and delegates to the service
  */
 @Service
 class StockTickerApiDelegateImpl(private val stockTickerService : StockTickerService) : StockTickerApiDelegate {

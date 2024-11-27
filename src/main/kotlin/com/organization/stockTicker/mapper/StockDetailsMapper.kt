@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
 /*
-Mapper to map the third party response to our API response
+Mapper to map information received from Alpha Vantage to API response
  */
 @Service
 class StockDetailsMapper(@Value("\${alphavantage.ndays}") private var ndays: Int) {
