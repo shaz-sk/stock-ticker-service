@@ -21,6 +21,8 @@
   ```shell
   docker build -t stock-ticker-service . && 
   docker run -e APIKEY=C227WD9W3LUVKVV9 \
+       -e SYMBOL=MSFT \
+       -e NDAYS=7 \
        -p 8080:8080  \
        -it stock-ticker-service
   ``` 
