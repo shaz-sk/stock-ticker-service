@@ -8,7 +8,6 @@ import com.organization.stockTicker.TestDataProvider
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
@@ -31,8 +30,6 @@ import kotlin.test.BeforeTest
 class StockTickerGetTest {
 
     private var wireMockServer: WireMockServer? = null
-
-    @Value("\${alphavantage.url}") private lateinit var alphavantageUrl: String
 
     @Autowired
     private val mvc: MockMvc? = null
@@ -60,7 +57,7 @@ class StockTickerGetTest {
             .andExpect(MockMvcResultMatchers.content().string(expectedResponse()))
     }
 
-    fun expectedResponse(): String = "{\"symbol\":\"MSFT\",\"averageClosingPrice\":415.12000000000006,\"averagePeriod\":3,\"dailyClosingPrice\":{\"2024-11-22\":417.0,\"2024-11-21\":412.87,\"2024-11-20\":415.49}}"
+    fun expectedResponse(): String = "{\"symbol\":\"MSFT\",\"averageClosingPrice\":415.12,\"averagePeriod\":3,\"dailyClosingPrice\":{\"2024-11-22\":417.0,\"2024-11-21\":412.87,\"2024-11-20\":415.49}}"
 
     @Throws(MalformedURLException::class)
     private fun setupWireMock() {

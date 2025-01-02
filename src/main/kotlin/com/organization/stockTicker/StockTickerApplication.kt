@@ -11,5 +11,4 @@ class StockTickerApplication
 
 fun main(args: Array<String>) {
     SpringApplication.run(StockTickerApplication::class.java, *args)
-//	runApplication<StockTickerApplication>(*args)
 }

@@ -31,7 +31,8 @@ class StockDetailsMapper(@Value("\${alphavantage.ndays}") private var ndays: Int
         return dailyDataMap.entries.take(ndays).associate { it.key to it.value.close }
     }
 
-    private fun averagePrice(dailyPrice: Collection<Double>): Double = dailyPrice.sum()/ndays
+    private fun averagePrice(dailyPrice: Collection<Double>): Double =
+        "%.2f".format(dailyPrice.sum()/ndays).toDouble()
 
 
 }
